@@ -9,17 +9,20 @@
   let { threshold = 0, target = undefined, hasMore, onLoadMore } = $props<Props>();
 
   let component = $state<HTMLDivElement>();
+  let element = $derived(target ?? component?.parentNode);
 
   $effect(() => {
-    const element = target ?? component?.parentNode;
     element?.addEventListener('scroll', onScroll);
     element?.addEventListener('resize', onScroll);
     if (element) {
-      setTimeout(onScroll, 1);
+      // InfiniteScroll コンポーネントが最初にマウントされたタイミングで
+      // すでにデータの追加読み込みが必要な場合がある。
+      // その場合に備えてイベントを発火させておく
+      const ev = new CustomEvent("scroll");
+      element?.dispatchEvent(ev);
     }
 
     return () => {
-      const element = target ?? component?.parentNode;
       element?.removeEventListener('scroll', onScroll);
       element?.removeEventListener('resize', onScroll);
     };
@@ -36,7 +39,8 @@
 
     if (needMore && hasMore) {
       onLoadMore();
-      setInterval(() => onScroll(), 1);
+      const ev = new CustomEvent("scroll");
+      element?.dispatchEvent(ev);
     }
   };
 </script>
