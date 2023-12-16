@@ -126,7 +126,7 @@
 			<div class="loading-indicator">Loading...</div>
 		{:else}
 			<InfinityScroll
-				nodeToScroll={document}
+        target={window}
 				threshold={20}
 				hasMore={hasMoreData}
 				onLoadMore={loadMore}
