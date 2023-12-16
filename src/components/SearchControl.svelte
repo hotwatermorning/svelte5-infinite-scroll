@@ -11,20 +11,16 @@
 	let text = $state('');
 
 	$effect(() => {
-		// console.log(`query changed1: ${query}`);
 		text = query;
 	});
 
 	function onKeydown(e: KeyboardEvent) {
-		// console.log("keydown");
 		if (e.key === 'Enter') {
-			// console.log("keydown");
 			onClicked();
 		}
 	}
 
 	function onClicked() {
-		console.log(`on clicked: ${text}`);
 		onSearch(text);
 	}
 </script>

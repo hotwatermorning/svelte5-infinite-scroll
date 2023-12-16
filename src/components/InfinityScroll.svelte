@@ -13,11 +13,6 @@
 
 	$effect(() => {
 		const element = target ?? component?.parentNode;
-		// console.log(`hasMore: ${hasMore}`);
-	});
-
-	$effect(() => {
-		// console.log("add listener");
 		element?.addEventListener('scroll', onScroll);
 		element?.addEventListener('resize', onScroll);
     if(element) {
@@ -26,7 +21,6 @@
 
 		return () => {
 			const element = target ?? component?.parentNode;
-			// console.log("remove listener");
 			element?.removeEventListener('scroll', onScroll);
 			element?.removeEventListener('resize', onScroll);
 		};
@@ -39,17 +33,9 @@
 
 		const rect = component.getBoundingClientRect();
 
-		// console.log(`window inner height: ${window.innerHeight}`);
-		// console.log(`elem rect: ${JSON.stringify(rect)}`);
-
-		// console.log(`threshold: ${threshold}`);
-
 		needMore = rect.top + threshold <= window.innerHeight;
 
-		// console.log(`needMore: ${needMore}`);
-		// console.log(`hasMore: ${hasMore}`);
 		if (needMore && hasMore) {
-			// console.log("invoke loadMore");
 			onLoadMore();
       setInterval(() => onScroll(), 1);
 		}

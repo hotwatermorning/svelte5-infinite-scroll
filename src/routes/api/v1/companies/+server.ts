@@ -2,7 +2,6 @@ import { error, json, type RequestHandler } from '@sveltejs/kit';
 import sqlite3 from 'sqlite3';
 
 export const GET: RequestHandler = async ({ request, url }) => {
-	console.log(`${request.method} ${url.pathname}`);
 
 	const query = url.searchParams.get('q');
 	const pageNumber = parseInt(url.searchParams.get('page') ?? '1'); // 1-origin
@@ -14,8 +13,6 @@ export const GET: RequestHandler = async ({ request, url }) => {
 	if (pageNumber < 1) {
 		throw error(400, 'invalid page number');
 	}
-
-	// console.log(`perPage: ${perPage}, pageNumber: ${pageNumber}`);
 
 	try {
 		let db: sqlite3.Database;

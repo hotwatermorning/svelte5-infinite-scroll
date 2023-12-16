@@ -2,8 +2,6 @@ import { error, json, type RequestHandler } from '@sveltejs/kit';
 import sqlite3 from 'sqlite3';
 
 export const GET: RequestHandler = async ({ request, url, params }) => {
-	console.log(`${request.method} ${url.pathname}`);
-
 	const id = parseInt(params.id ?? '0');
 	if (id < 1) {
 		throw error(400, 'invalid id');

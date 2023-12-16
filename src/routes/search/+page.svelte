@@ -17,7 +17,6 @@
 	});
 
 	const onSearch = (queryText: string) => {
-		console.log(`onSearch: ${queryText}`);
 		goto(`/search/?q=${encodeURIComponent(queryText)}`);
 	};
 
@@ -44,12 +43,10 @@
 
 	export const snapshot: Snapshot = {
 		capture: () => {
-			console.log(`saved scrollPosition: ${window.scrollY}`);
 			return { ...pageData, scrollPosition: window.scrollY };
 		},
 		restore: async (value: PageData) => {
 			pageData = value;
-			console.log(`stored scrollPosition: ${pageData.scrollPosition}`);
 			// DOM の再構築が終わってからスクロール位置を戻すために次のイベントループまで待つ
 			setTimeout(() => {
 				window.scroll(0, pageData.scrollPosition);
@@ -77,7 +74,6 @@
 
 		await new Promise((resolve) => setTimeout(resolve, 300));
 
-		// console.log(`searchCompanies: ${query}`);
 		const res = await searchCompanies(query.trim(), pageData.pageIndex + 1, perPage);
 		if (!res.ok) {
 			// TODO: error handling
@@ -96,19 +92,9 @@
 	let hasMoreData = $derived(pageData.pageIndex * perPage < (pageData.searchResult.total ?? 0));
 
 	$effect(() => {
-		// console.log(`itemCount changed: ${itemCount}`);
-	});
-
-	$effect(() => {
-		// console.log(`hasMoreData changed: ${hasMoreData}`);
-	});
-
-	$effect(() => {
 		if (query.trim() !== '' && pageData.query !== query) {
-			console.log('clear pageData');
 			pageData = createEmptyPageData();
 			pageData.query = query;
-			console.log('invoke loadMore');
 			loadMore();
 		}
 	});
