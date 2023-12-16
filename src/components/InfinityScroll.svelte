@@ -20,6 +20,9 @@
 		// console.log("add listener");
 		element?.addEventListener('scroll', onScroll);
 		element?.addEventListener('resize', onScroll);
+    if(element) {
+      setTimeout(onScroll, 1);
+    }
 
 		return () => {
 			const element = target ?? component?.parentNode;
@@ -29,12 +32,7 @@
 		};
 	});
 
-	const onScroll = (e: Event) => {
-		const element = e.target as HTMLElement;
-		if (element == null) {
-			return;
-		}
-
+  const onScroll = () => {
 		if (component == null) {
 			return;
 		}
