@@ -112,6 +112,8 @@
 		{/each}
 		{#if isLoading}
 			<div class="loading-indicator">Loading...</div>
+    {:else if pageData.searchResult.companies.length >= pageData.searchResult.total}
+      <div class="loading-indicator">No more items.</div>
 		{:else}
 			<InfiniteScroll target={window} threshold={20} hasMore={hasMoreData} onLoadMore={loadMore} />
 		{/if}
