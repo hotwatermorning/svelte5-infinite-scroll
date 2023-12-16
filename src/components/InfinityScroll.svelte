@@ -51,6 +51,7 @@
 		if (needMore && hasMore) {
 			// console.log("invoke loadMore");
 			onLoadMore();
+      setInterval(() => onScroll(), 1);
 		}
 	};
 </script>
