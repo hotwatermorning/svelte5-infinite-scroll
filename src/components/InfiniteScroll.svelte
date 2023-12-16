@@ -8,7 +8,6 @@
 
   let { threshold = 0, target = undefined, hasMore, onLoadMore } = $props<Props>();
 
-  let needMore = $state(false);
   let component = $state<HTMLDivElement>();
 
   $effect(() => {
@@ -33,7 +32,7 @@
 
     const rect = component.getBoundingClientRect();
 
-    needMore = rect.top + threshold <= window.innerHeight;
+    const needMore = rect.top + threshold <= window.innerHeight;
 
     if (needMore && hasMore) {
       onLoadMore();
