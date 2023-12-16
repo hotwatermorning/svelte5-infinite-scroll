@@ -1,17 +1,16 @@
 <script lang="ts">
-	import { goto } from "$app/navigation";
-	import SearchControl from "../components/SearchControl.svelte";
+	import { goto } from '$app/navigation';
+	import SearchControl from '../components/SearchControl.svelte';
 
-	let query = "";
+	let query = '';
 	const onSearch = (queryText: string) => {
 		goto(`/search/?q=${encodeURIComponent(queryText)}`);
 	};
-
 </script>
 
 <section>
 	<div class="search-control-wrapper">
-		<SearchControl {query} onSearch={onSearch} />
+		<SearchControl {query} {onSearch} />
 	</div>
 </section>
 
