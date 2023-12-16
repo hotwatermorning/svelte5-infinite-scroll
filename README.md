@@ -4,7 +4,7 @@ Infinite Scroll Sample made with Svelte 5.
 
 ## Prerequisites
 
-* pnpm
+- pnpm
 
 ## How to build
 

@@ -2,7 +2,6 @@ import { error, json, type RequestHandler } from '@sveltejs/kit';
 import sqlite3 from 'sqlite3';
 
 export const GET: RequestHandler = async ({ request, url }) => {
-
 	const query = url.searchParams.get('q');
 	const pageNumber = parseInt(url.searchParams.get('page') ?? '1'); // 1-origin
 	const perPage = (() => {

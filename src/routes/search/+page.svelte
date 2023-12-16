@@ -5,8 +5,7 @@
 	import SearchControl from '../../components/SearchControl.svelte';
 	import type { Company } from '../../models';
 	import CompanyCard from './CompanyCard.svelte';
-	import InfinityScroll from '../../components/InfiniteScroll.svelte';
-	import { onMount } from 'svelte';
+	import InfiniteScroll from '../../components/InfiniteScroll.svelte';
 
 	let query = $state('');
 	const perPage = 10;
@@ -103,9 +102,9 @@
 <section>
 	<div class="search-control-wrapper">
 		<SearchControl {query} {onSearch} />
-    {#if pageData.searchResult.total !== 0 && isLoading === false}
-      <div class="item-count">{`Item count: ${pageData.searchResult.total}`}</div>
-    {/if}
+		{#if pageData.searchResult.total !== 0 && isLoading === false}
+			<div class="item-count">{`Item count: ${pageData.searchResult.total}`}</div>
+		{/if}
 		{#each pageData.searchResult.companies as c}
 			<div class="company-card-wrapper">
 				<CompanyCard id={c.id} name={c.name} thumbnail={c.url} />
@@ -114,12 +113,7 @@
 		{#if isLoading}
 			<div class="loading-indicator">Loading...</div>
 		{:else}
-			<InfiniteScroll
-        target={window}
-				threshold={20}
-				hasMore={hasMoreData}
-				onLoadMore={loadMore}
-			/>
+			<InfiniteScroll target={window} threshold={20} hasMore={hasMoreData} onLoadMore={loadMore} />
 		{/if}
 	</div>
 </section>
@@ -127,9 +121,9 @@
 <style>
 	.search-control-wrapper {
 		max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
 	}
 
 	.company-card-wrapper + .company-card-wrapper {

@@ -5,7 +5,7 @@
 
 <section>
 	<h1>{pageData.name}</h1>
-	<img class="image" src={pageData.url} alt="company"/>
+	<img class="image" src={pageData.url} alt="company" />
 </section>
 
 <style>

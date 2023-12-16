@@ -15,9 +15,9 @@
 		const element = target ?? component?.parentNode;
 		element?.addEventListener('scroll', onScroll);
 		element?.addEventListener('resize', onScroll);
-    if(element) {
-      setTimeout(onScroll, 1);
-    }
+		if (element) {
+			setTimeout(onScroll, 1);
+		}
 
 		return () => {
 			const element = target ?? component?.parentNode;
@@ -26,7 +26,7 @@
 		};
 	});
 
-  const onScroll = () => {
+	const onScroll = () => {
 		if (component == null) {
 			return;
 		}
@@ -37,7 +37,7 @@
 
 		if (needMore && hasMore) {
 			onLoadMore();
-      setInterval(() => onScroll(), 1);
+			setInterval(() => onScroll(), 1);
 		}
 	};
 </script>
