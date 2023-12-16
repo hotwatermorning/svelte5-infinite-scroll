@@ -117,6 +117,9 @@
 <section>
 	<div class="search-control-wrapper">
 		<SearchControl {query} {onSearch} />
+    {#if pageData.searchResult.total !== 0 && isLoading === false}
+      <div class="item-count">{`Item count: ${pageData.searchResult.total}`}</div>
+    {/if}
 		{#each pageData.searchResult.companies as c}
 			<div class="company-card-wrapper">
 				<CompanyCard id={c.id} name={c.name} thumbnail={c.url} />
@@ -138,6 +141,9 @@
 <style>
 	.search-control-wrapper {
 		max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 	}
 
 	.company-card-wrapper + .company-card-wrapper {
