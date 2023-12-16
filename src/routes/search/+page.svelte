@@ -5,7 +5,7 @@
 	import SearchControl from '../../components/SearchControl.svelte';
 	import type { Company } from '../../models';
 	import CompanyCard from './CompanyCard.svelte';
-	import InfinityScroll from '../../components/InfinityScroll.svelte';
+	import InfinityScroll from '../../components/InfiniteScroll.svelte';
 	import { onMount } from 'svelte';
 
 	let query = $state('');
@@ -114,7 +114,7 @@
 		{#if isLoading}
 			<div class="loading-indicator">Loading...</div>
 		{:else}
-			<InfinityScroll
+			<InfiniteScroll
         target={window}
 				threshold={20}
 				hasMore={hasMoreData}
