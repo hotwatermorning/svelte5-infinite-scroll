@@ -3,7 +3,7 @@
     threshold: number;
     target: EventTarget | undefined;
     hasMore: boolean;
-    onLoadMore: () => void;
+    onLoadMore: () => Promise<void>;
   };
 
   let { threshold = 0, target = undefined, hasMore, onLoadMore } = $props<Props>();
@@ -28,7 +28,7 @@
     };
   });
 
-  const onScroll = () => {
+  const onScroll = async () => {
     if (component == null) {
       return;
     }
@@ -38,7 +38,7 @@
     const needMore = rect.top + threshold <= window.innerHeight;
 
     if (needMore && hasMore) {
-      onLoadMore();
+      await onLoadMore();
       const ev = new CustomEvent("scroll");
       element?.dispatchEvent(ev);
     }
