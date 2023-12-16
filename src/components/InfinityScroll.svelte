@@ -49,6 +49,5 @@
 		width: 100%;
 		height: 0px;
 		border: none;
-		border: 1px solid red;
 	}
 </style>
