@@ -1,28 +1,28 @@
 <script lang="ts">
 	type Props = {
 		threshold: number;
-		nodeToScroll: Node | undefined;
+		target: EventTarget | undefined;
 		hasMore: boolean;
 		onLoadMore: () => void;
 	};
 
-	let { threshold = 0, nodeToScroll = undefined, hasMore, onLoadMore } = $props<Props>();
+	let { threshold = 0, target = undefined, hasMore, onLoadMore } = $props<Props>();
 
 	let needMore = $state(false);
 	let component = $state<HTMLDivElement>();
 
 	$effect(() => {
+		const element = target ?? component?.parentNode;
 		// console.log(`hasMore: ${hasMore}`);
 	});
 
 	$effect(() => {
-		const element = nodeToScroll ?? component?.parentNode;
 		// console.log("add listener");
 		element?.addEventListener('scroll', onScroll);
 		element?.addEventListener('resize', onScroll);
 
 		return () => {
-			const element = nodeToScroll ?? component?.parentNode;
+			const element = target ?? component?.parentNode;
 			// console.log("remove listener");
 			element?.removeEventListener('scroll', onScroll);
 			element?.removeEventListener('resize', onScroll);
